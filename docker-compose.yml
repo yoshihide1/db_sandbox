@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16 # PostgreSQL 16の公式イメージ
+    container_name: sample_db
+    environment:
+      POSTGRES_USER: ${PGUSER}         # .env から PGUSER を参照
+      POSTGRES_PASSWORD: ${PGPASSWORD} # .env から PGPASSWORD を参照
+      POSTGRES_DB: ${PGDATABASE}       # .env から PGDATABASE を参照
+    ports:
+      - '${PGPORT}:5432'    
+    volumes:
+      - ./backup:/docker-entrypoint-initdb.d/backup # バックアップファイルのマウント
+      - ./init:/docker-entrypoint-initdb.d/init # 復元スクリプトのマウント
