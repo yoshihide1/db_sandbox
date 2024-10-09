@@ -5,9 +5,6 @@ export $(cat .env | xargs)
 
 set -e
 
-# バックアップファイルのパス（コンテナ内）
-BACKUP_FILE="/docker-entrypoint-initdb.d/backup/dvdrental.tar"
-
 # Docker Composeを使用してコンテナを再起動
 echo "Shutting down existing containers..."
 docker-compose down -v
